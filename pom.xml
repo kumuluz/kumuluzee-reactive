@@ -8,6 +8,10 @@
     <artifactId>kumuluzee-reactive</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>common</module>
+        <module>vertx</module>
+    </modules>
 
     <name>KumuluzEE Reactive</name>
 
@@ -23,7 +27,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <kumuluzee.version>2.4.1</kumuluzee.version>
+        <kumuluzee.version>2.5.0-SNAPSHOT</kumuluzee.version>
 
         <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
         <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
@@ -47,6 +51,12 @@
             <id>tfaga</id>
             <email>tilen.faganel@me.com</email>
             <url>https://github.com/TFaga</url>
+        </developer>
+        <developer>
+            <name>Žan Ožbot</name>
+            <id>zanozbot</id>
+            <email>zan.ozbot@gmail.com</email>
+            <url>https://github.com/zanozbot</url>
         </developer>
     </developers>
 
@@ -72,6 +82,12 @@
                 <version>${kumuluzee.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.kumuluz.ee.reactive</groupId>
+                <artifactId>kumuluzee-reactive-common</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
