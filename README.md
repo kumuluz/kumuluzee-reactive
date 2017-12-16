@@ -9,7 +9,7 @@ Currently, Vert.x is supported. In the future, other reactive frameworks will be
 
 # Using Vert.x with KumuluzEE microservices
 
-KumuluzEE Reactive Vert.x provides integration with Vert.x distributed event bus. It also provides integration with Vert.x service discovery. KumuluzEE Reactive Vert.x provides easy-to-use annotations for developing microservices that listen to or produce messages on the Vert.x distributed event bus. It also provides two service discovery bridges for importing and exporting services from Vert.x service discovery to KumuluzEE Service Discovery (for Consul and etcd).
+KumuluzEE Reactive Vert.x provides integration with Vert.x distributed event bus and integration with Vert.x service discovery. It provides easy-to-use annotations for developing microservices that listen to or produce messages on the Vert.x distributed event bus and a service discovery bridge for importing and exporting services from Vert.x service discovery to KumuluzEE Service Discovery (for Consul and etcd).
 
 ## How it works
 
@@ -19,7 +19,7 @@ Vert.x passes all of its events to the event handlers when they are available. I
 
 If you want to learn more, click [here](http://vertx.io/docs/vertx-core/java/).
 
-![KumuluzEE Reactive Vert.x archietecture](https://drive.google.com/uc?export=view&id=1CT101QM29-cgZ-dAJDQKsaopuRkL0ufH)
+![KumuluzEE Reactive Vert.x architecture](https://raw.githubusercontent.com/kumuluz/kumuluzee-reactive/master/resources/img/architecture.png)
 
 ## Usage
 
@@ -35,8 +35,7 @@ You can enable KumuluzEE Reactive with Vert.x by adding the following dependency
 
 Vert.x is configured with the common KumuluzEE configuration framework. Configuration properties can be defined with the environment variables or with the configuration files. Alternatively, they can also be stored in a configuration server, such as etcd or Consul (for which the KumuluzEE Config extension is required). For more details see the [KumuluzEE configuration wiki page](https://github.com/kumuluz/kumuluzee/wiki/Configuration) and [KumuluzEE Config](https://github.com/kumuluz/kumuluzee-config).
 
-Listed below are all the properties available for Vert.x configuration.
-
+Listed below are all the properties available for Vert.x configuration:
 ```yaml
 kumuluzee:
   env:
@@ -73,7 +72,7 @@ Properties *blocked-thread-check-interval*, *cluster-ping-interval*, *cluster-pi
 
 For injecting the Vert.x event bus message producer, KumuluzEE Reactive provides a `@ReactiveEventPublisher` annotation which will inject a message producer. A use of `@Inject` annotation is also needed. The annotation accepts one parameter, which is by default set to `publisher`.
 
-Example of using the following annotation.
+Example of using the following annotation:
 ```java
 @Inject
 @ReactiveEventPublisher(address = "event-name")
@@ -84,7 +83,7 @@ MessageProducer<Object> messageProducer;
 
 For listening to Vert.x event bus, KumuluzEE Reactive provides the `@ReactiveEventListener` annotation. Use of `@Inject` annotation is also needed. The annotation accepts one parameter which is by default `listener`. The annotation itself can be used on top of any method as long as it has one parameter of type `Message<Object>`.  We can also reply to a message as shown in the example below.
 
-Example of using the following annotation.
+Example of using the following annotation:
 ```java
 @ReactiveEventListener(address = "event-name")
 public void onMessage(Message<Object> event) {    
@@ -96,13 +95,12 @@ public void onMessage(Message<Object> event) {
 
 ## Service Discovery Bridge
 
-KumuluzEE Reactive extension provides a bridge between Vert.x Service Discovery and KumuluzEE Discovery for etcd and Consul.
+KumuluzEE Reactive extension provides a bridge between Vert.x Service Discovery and KumuluzEE Discovery (for etcd and Consul).
 To enable the bridge import either one of the following dependencies
  - `kumuluzee-discovery-etcd`
  - `kumuluzee-discovery-consul`.
 
-Listed below are all the properties available for bridge configuration.
-
+Listed below are all the properties available for bridge configuration:
 ```yaml
 kumuluzee:
   reactive:
@@ -125,7 +123,7 @@ KumuluzEE Reactive Vert.x extension forms a cluster with other Vert.x instances,
 (e.g. registration of a service). Knowing that, we must start a microservice using `kumuluzee.reactive.vertx.cluster`
 set to `true`. The following image illustrates how the bridge works.
 
-![KumuluzEE Reactive Vert.x Service Discovery](https://drive.google.com/uc?export=view&id=1F1YzhbhulJftp-8anA8KPGqa3sd4-Vgw)
+![KumuluzEE Reactive Vert.x Service Discovery](https://raw.githubusercontent.com/kumuluz/kumuluzee-reactive/master/resources/img/service_discovery.png)
 
 ### Registering a service
 
@@ -133,8 +131,7 @@ When registering a service in Vert.x Service Discovery you can override the abov
 to a `Record`.
 
 In the example below we will set `ttl` to 20, `ping-interval` to 15, `env` to `vertx` and `version` to `1.1.0`.
-* `version`: version of service to be registered. Default value is `1.0.0`
-
+* `version`: version of service to be registered. Default value is `1.0.0`.
 ```java
 Record record = HttpEndpoint.createRecord("some-rest-api", "localhost", 8080, "/");
 record.setMetadata(new JsonObject().put("ttl", 20).put("ping-interval", 15)
@@ -148,7 +145,6 @@ an address `vertx.discovery.request` on the eventbus.
 
 In the example below we request for a service `customers-service` with version `1.0.0` located in `dev`
 environment.
-
 ```java
 JsonObject service = new JsonObject().put("name", "customer-service")
     .put("version", "1.0.0")
@@ -168,13 +164,13 @@ vertx.eventBus().send("vertx.discovery.request", service, ar -> {
 
 If the annotations are not enough KumuluzEE Reactive provides util classes which consist of helper methods for taking advantage of additional features offered by Vert.x.
 
-Example of getting a reference to Vert.x instance.
+Example of getting a reference to Vert.x instance:
 ```java
 Vertx vertx = VertxUtils.getInstance().getVertx();
 // ...
 ```
 
-Example of getting a reference to Service Discovery instance.
+Example of getting a reference to Service Discovery instance:
 ```java
 ServiceDiscovery discovery = VertxUtils.getInstance().getServiceDiscovery();
 // ...
