@@ -9,8 +9,7 @@ Currently, Vert.x is supported. In the future, other reactive frameworks will be
 
 # Using Vert.x with KumuluzEE microservices
 
-KumuluzEE Reactive Vert.x provides integration with Vert.x distributed event bus. It also provides integration with Vert.x service discovery.  
-KumuluzEE Reactive Vert.x provides easy-to-use annotations for developing microservices that listen to or produce messages on the Vert.x distributed event bus. It also provides two service discovery bridges for importing and exporting services from Vert.x service discovery to KumuluzEE Service Discovery (for Consul and etcd).
+KumuluzEE Reactive Vert.x provides integration with Vert.x distributed event bus. It also provides integration with Vert.x service discovery. KumuluzEE Reactive Vert.x provides easy-to-use annotations for developing microservices that listen to or produce messages on the Vert.x distributed event bus. It also provides two service discovery bridges for importing and exporting services from Vert.x service discovery to KumuluzEE Service Discovery (for Consul and etcd).
 
 ## How it works
 
