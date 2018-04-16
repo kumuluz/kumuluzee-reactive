@@ -1,9 +1,9 @@
 # KumuluzEE Reactive
 [![Build Status](https://img.shields.io/travis/kumuluz/kumuluzee-reactive/master.svg?style=flat)](https://travis-ci.org/kumuluz/kumuluzee-reactive)
 
-> KumuluzEE Reactive extension for developing reactive microservices.
+> KumuluzEE Reactive project for developing reactive microservices.
 
-KumuluzEE Reactive is an extension for using reactive patterns with the KumuluzEE microservices. It provides support for integrating KumuluzEE microservices with various reactive frameworks, such as Vert.x, ReactiveX, etc. KumuluzEE Reactive has been designed to support modularity with pluggable reactive frameworks. 
+KumuluzEE Reactive is a project for using reactive patterns with the KumuluzEE microservices. It provides support for integrating KumuluzEE microservices with various reactive frameworks, such as Vert.x, ReactiveX, etc. KumuluzEE Reactive has been designed to support modularity with pluggable reactive frameworks. 
 
 Currently, Vert.x is supported. In the future, other reactive frameworks will be supported too (contributions are welcome). 
 
